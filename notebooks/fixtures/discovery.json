@@ -1,0 +1,133 @@
+{
+  "provenance": "Authored synthetic metadata for notebook 02, 2026-11-14. Names, categories and popularity scores are teaching fixtures, not recorded FRED data.",
+  "series": [
+    {
+      "id": "GDP",
+      "title": "Gross domestic product (synthetic)",
+      "observation_start": "2019-01-01",
+      "observation_end": "2020-10-01",
+      "frequency": "Quarterly",
+      "frequency_short": "Q",
+      "units": "Billions of US dollars",
+      "units_short": "USD bn",
+      "seasonal_adjustment": "Seasonally adjusted annual rate",
+      "seasonal_adjustment_short": "SAAR",
+      "last_updated": "2021-03-31 07:30:00-05",
+      "notes": "Authored synthetic discovery metadata, not official FRED records.",
+      "realtime_start": "2021-03-31",
+      "realtime_end": "2021-03-31",
+      "popularity": 90
+    },
+    {
+      "id": "GDI",
+      "title": "Gross domestic income (synthetic)",
+      "observation_start": "2019-01-01",
+      "observation_end": "2020-10-01",
+      "frequency": "Quarterly",
+      "frequency_short": "Q",
+      "units": "Billions of US dollars",
+      "units_short": "USD bn",
+      "seasonal_adjustment": "Seasonally adjusted annual rate",
+      "seasonal_adjustment_short": "SAAR",
+      "last_updated": "2021-03-31 07:30:00-05",
+      "notes": "Authored synthetic discovery metadata, not official FRED records.",
+      "realtime_start": "2021-03-31",
+      "realtime_end": "2021-03-31",
+      "popularity": 60
+    },
+    {
+      "id": "RGDP",
+      "title": "Real domestic product (synthetic)",
+      "observation_start": "2019-01-01",
+      "observation_end": "2020-10-01",
+      "frequency": "Quarterly",
+      "frequency_short": "Q",
+      "units": "Billions of chained dollars",
+      "units_short": "chained USD bn",
+      "seasonal_adjustment": "Seasonally adjusted annual rate",
+      "seasonal_adjustment_short": "SAAR",
+      "last_updated": "2021-03-31 07:30:00-05",
+      "notes": "Authored synthetic discovery metadata, not official FRED records.",
+      "realtime_start": "2021-03-31",
+      "realtime_end": "2021-03-31",
+      "popularity": 95
+    },
+    {
+      "id": "MGDP",
+      "title": "Monthly activity indicator (synthetic)",
+      "observation_start": "2019-01-01",
+      "observation_end": "2020-10-01",
+      "frequency": "Monthly",
+      "frequency_short": "M",
+      "units": "Billions of US dollars",
+      "units_short": "USD bn",
+      "seasonal_adjustment": "Seasonally adjusted annual rate",
+      "seasonal_adjustment_short": "SAAR",
+      "last_updated": "2021-03-31 07:30:00-05",
+      "notes": "Authored synthetic discovery metadata, not official FRED records.",
+      "realtime_start": "2021-03-31",
+      "realtime_end": "2021-03-31",
+      "popularity": 85
+    },
+    {
+      "id": "GDPNSA",
+      "title": "Unadjusted domestic product (synthetic)",
+      "observation_start": "2019-01-01",
+      "observation_end": "2020-10-01",
+      "frequency": "Quarterly",
+      "frequency_short": "Q",
+      "units": "Billions of US dollars",
+      "units_short": "USD bn",
+      "seasonal_adjustment": "Not seasonally adjusted",
+      "seasonal_adjustment_short": "NSA",
+      "last_updated": "2021-03-31 07:30:00-05",
+      "notes": "Authored synthetic discovery metadata, not official FRED records.",
+      "realtime_start": "2021-03-31",
+      "realtime_end": "2021-03-31",
+      "popularity": 70
+    },
+    {
+      "id": "GDPX",
+      "title": "External output measure (synthetic)",
+      "observation_start": "2019-01-01",
+      "observation_end": "2020-10-01",
+      "frequency": "Quarterly",
+      "frequency_short": "Q",
+      "units": "Billions of US dollars",
+      "units_short": "USD bn",
+      "seasonal_adjustment": "Seasonally adjusted annual rate",
+      "seasonal_adjustment_short": "SAAR",
+      "last_updated": "2021-03-31 07:30:00-05",
+      "notes": "Authored synthetic discovery metadata, not official FRED records.",
+      "realtime_start": "2021-03-31",
+      "realtime_end": "2021-03-31",
+      "popularity": 99
+    }
+  ],
+  "categories": [
+    {
+      "id": 125,
+      "name": "National output (synthetic)",
+      "parent_id": 0,
+      "notes": "Contains five fixture series; category membership does not imply comparable definitions."
+    },
+    {
+      "id": 999,
+      "name": "Other indicators (synthetic)",
+      "parent_id": 0,
+      "notes": "Separate category for GDPX."
+    }
+  ],
+  "category_series": {
+    "125": [
+      "GDP",
+      "GDI",
+      "RGDP",
+      "MGDP",
+      "GDPNSA"
+    ],
+    "999": [
+      "GDPX"
+    ]
+  }
+}
