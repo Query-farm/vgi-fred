@@ -43,6 +43,10 @@ For Haybarn 2.0.0rc11 use `INSTALL vgi FROM community; LOAD vgi;`, then the same
 `ATTACH` and queries. An absolute worker path avoids dependence on the engine's
 working directory. For a pooled local worker use `LOCATION 'launch:/absolute/path/to/vgi-fred/.venv/bin/vgi-fred-worker'`.
 
+To run a tagged release without cloning, set
+`LOCATION 'uvx --from git+https://github.com/Query-farm/vgi-fred@v0.1.0 vgi-fred-worker'`
+(change `@v0.1.0` to move to a newer release).
+
 Alternatively, after attaching, create a session secret of type `fred_api` with an
 `API_KEY` field. A matching secret takes precedence over the worker environment:
 
