@@ -1,0 +1,153 @@
+{
+  "provenance": "Synthetic fixture authored for this notebook, 2026-11-14. Not recorded FRED responses.",
+  "series": {
+    "id": "GDP",
+    "title": "Synthetic GDP vintage exercise",
+    "observation_start": "2019-01-01",
+    "observation_end": "2020-10-01",
+    "frequency": "Quarterly",
+    "frequency_short": "Q",
+    "units": "Billions of US dollars",
+    "units_short": "USD bn",
+    "seasonal_adjustment": "Seasonally adjusted annual rate",
+    "seasonal_adjustment_short": "SAAR",
+    "last_updated": "2021-03-31 07:30:00-05",
+    "notes": "Authored synthetic values for a revision demonstration; not official economic data. The symbol GDP only selects the fixture route.",
+    "realtime_start": "2021-03-31",
+    "realtime_end": "2021-03-31"
+  },
+  "observations": [
+    {
+      "date": "2019-01-01",
+      "value": "95.00",
+      "realtime_start": "2019-04-30",
+      "realtime_end": "2019-05-27"
+    },
+    {
+      "date": "2019-01-01",
+      "value": "95.20",
+      "realtime_start": "2019-05-28",
+      "realtime_end": "2019-06-24"
+    },
+    {
+      "date": "2019-01-01",
+      "value": "95.40",
+      "realtime_start": "2019-06-25",
+      "realtime_end": "9999-12-31"
+    },
+    {
+      "date": "2019-04-01",
+      "value": "96.00",
+      "realtime_start": "2019-07-30",
+      "realtime_end": "2019-08-26"
+    },
+    {
+      "date": "2019-04-01",
+      "value": "95.90",
+      "realtime_start": "2019-08-27",
+      "realtime_end": "2019-09-23"
+    },
+    {
+      "date": "2019-04-01",
+      "value": "95.80",
+      "realtime_start": "2019-09-24",
+      "realtime_end": "9999-12-31"
+    },
+    {
+      "date": "2019-07-01",
+      "value": "98.00",
+      "realtime_start": "2019-10-30",
+      "realtime_end": "2019-11-26"
+    },
+    {
+      "date": "2019-07-01",
+      "value": "98.40",
+      "realtime_start": "2019-11-27",
+      "realtime_end": "2019-12-24"
+    },
+    {
+      "date": "2019-07-01",
+      "value": "98.80",
+      "realtime_start": "2019-12-25",
+      "realtime_end": "9999-12-31"
+    },
+    {
+      "date": "2019-10-01",
+      "value": "100.00",
+      "realtime_start": "2020-01-30",
+      "realtime_end": "2020-02-26"
+    },
+    {
+      "date": "2019-10-01",
+      "value": "100.25",
+      "realtime_start": "2020-02-27",
+      "realtime_end": "2020-03-25"
+    },
+    {
+      "date": "2019-10-01",
+      "value": "100.50",
+      "realtime_start": "2020-03-26",
+      "realtime_end": "9999-12-31"
+    },
+    {
+      "date": "2020-01-01",
+      "value": "90.00",
+      "realtime_start": "2020-04-30",
+      "realtime_end": "2020-05-27"
+    },
+    {
+      "date": "2020-01-01",
+      "value": "91.00",
+      "realtime_start": "2020-05-28",
+      "realtime_end": "2020-06-24"
+    },
+    {
+      "date": "2020-01-01",
+      "value": "92.00",
+      "realtime_start": "2020-06-25",
+      "realtime_end": "9999-12-31"
+    },
+    {
+      "date": "2020-04-01",
+      "value": ".",
+      "realtime_start": "2020-07-30",
+      "realtime_end": "9999-12-31"
+    },
+    {
+      "date": "2020-07-01",
+      "value": "94.00",
+      "realtime_start": "2020-10-30",
+      "realtime_end": "2020-11-26"
+    },
+    {
+      "date": "2020-07-01",
+      "value": "95.00",
+      "realtime_start": "2020-11-27",
+      "realtime_end": "2020-12-24"
+    },
+    {
+      "date": "2020-07-01",
+      "value": "96.00",
+      "realtime_start": "2020-12-25",
+      "realtime_end": "9999-12-31"
+    },
+    {
+      "date": "2020-10-01",
+      "value": "98.00",
+      "realtime_start": "2021-01-30",
+      "realtime_end": "2021-02-26"
+    },
+    {
+      "date": "2020-10-01",
+      "value": "98.50",
+      "realtime_start": "2021-02-27",
+      "realtime_end": "2021-03-26"
+    },
+    {
+      "date": "2020-10-01",
+      "value": "99.00",
+      "realtime_start": "2021-03-27",
+      "realtime_end": "9999-12-31"
+    }
+  ]
+}

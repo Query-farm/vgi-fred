@@ -305,3 +305,9 @@ Report reproducible issues in [GitHub Issues](https://github.com/Query-farm/vgi-
 [VERIFICATION.md](VERIFICATION.md) for measured checks and unverified deployment
 steps. Worker code is licensed under [0BSD](LICENSE); this does not license
 third-party economic data. Template update review: `make template-diff`.
+
+## Executed notebook
+
+[Reconstruct GDP vintages](notebooks/README.md) compares historical knowledge dates,
+revision intervals and quarter-to-quarter growth using explicit synthetic local
+fixtures through the published worker. The notebook runs independently of this checkout.
