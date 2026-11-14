@@ -1,16 +1,32 @@
-# Private graders for the public vgi.agent_test_tasks in the worker's catalog metadata.
-# `vgi-lint lint --ai` runs an agent on each prompt and grades it with check_sql.
-# See https://github.com/Query-farm/vgi-lint-check (VGI920).
+# Live analyst tasks require a configured FRED credential.
 tasks:
-  - name: formal_greeting
-    reference_sql: SELECT starter.main.greet('Grace', 'formal') AS greeting
-  - name: sum_of_squares
-    reference_sql: SELECT sum(squared) AS total FROM starter.main.sequence_table(10)
-  - name: stepped_sequence
-    reference_sql: SELECT n FROM starter.main.sequence_table(4, step := 5) ORDER BY n
-  # Reads the public demo API (https://vgi-starter-api.query-farm.services/v1).
-  - name: items_per_category
-    check_sql: >-
-      SELECT count(*) = 3 AND sum(items) = 25
-      FROM (SELECT category, count(*) AS items
-            FROM starter.main.fetch_items('https://vgi-starter-api.query-farm.services/v1') GROUP BY category)
+  - name: observations
+    reference_sql: "SELECT date, value FROM fred.main.observations('UNRATE', observation_start := '2020-01-01') ORDER BY date"
+  - name: alfred_observations
+    reference_sql: "SELECT date, value FROM fred.main.alfred_observations('GDP', '2020-07-30', observation_start := '2020-01-01') ORDER BY date"
+  - name: alfred_revisions
+    reference_sql: "SELECT date, value, realtime_start, realtime_end FROM fred.main.alfred_revisions('GDP', observation_start := '2020-01-01', observation_end := '2020-01-01') ORDER BY date, realtime_start"
+  - name: initial_releases
+    reference_sql: "SELECT date, value, realtime_start FROM fred.main.initial_releases('GDP', observation_start := '2020-01-01') ORDER BY date"
+  - name: vintage_dates
+    reference_sql: "SELECT vintage_date FROM fred.main.vintage_dates('GDP', realtime_start := '2020-01-01', realtime_end := '2020-12-31') ORDER BY vintage_date"
+  - name: series
+    reference_sql: "SELECT id, title, units, frequency FROM fred.main.series('GDP') ORDER BY id"
+  - name: search_series
+    reference_sql: "SELECT id, title, popularity FROM fred.main.search_series('unemployment', max_rows := 20) ORDER BY popularity DESC, id"
+  - name: category
+    reference_sql: "SELECT id, name, parent_id FROM fred.main.category(125) ORDER BY id"
+  - name: category_children
+    reference_sql: "SELECT id, name FROM fred.main.category_children(0) ORDER BY id"
+  - name: category_series
+    reference_sql: "SELECT id, title FROM fred.main.category_series(125, max_rows := 100) ORDER BY id"
+  - name: releases
+    reference_sql: "SELECT id, name FROM fred.main.releases() ORDER BY id"
+  - name: release_series
+    reference_sql: "SELECT id, title FROM fred.main.release_series(53, max_rows := 100) ORDER BY id"
+  - name: release_dates
+    reference_sql: "SELECT release_id, date FROM fred.main.release_dates(53, realtime_start := '2020-01-01', realtime_end := '2020-12-31') ORDER BY date"
+  - name: sources
+    reference_sql: "SELECT id, name, link FROM fred.main.sources() ORDER BY id"
+  - name: series_categories
+    reference_sql: "SELECT id, name FROM fred.main.series_categories('GDP') ORDER BY id"

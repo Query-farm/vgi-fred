@@ -1,0 +1,203 @@
+# FRED and ALFRED contract tests. All upstream data is synthetic and local.
+require vgi
+
+require-env FRED_WORKER
+
+statement ok
+ATTACH 'fred' (TYPE vgi, LOCATION '{FRED_WORKER}');
+
+statement error
+SELECT count(*) FROM fred.main.observations('GDP');
+----
+FRED_API_KEY
+
+statement ok
+CREATE TEMPORARY SECRET wrong_key (TYPE fred_api, API_KEY 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa');
+
+statement error
+SELECT count(*) FROM fred.main.observations('GDP');
+----
+HTTP 400
+
+statement ok
+DROP SECRET wrong_key;
+
+statement ok
+CREATE TEMPORARY SECRET fixture_key (TYPE fred_api, API_KEY '00000000000000000000000000000000');
+
+query IIT
+SELECT count(*), count(value), min(value_text) FROM fred.main.observations('GDP', page_size := 1);
+----
+3	2	.
+
+query TT
+SELECT CAST(date AS VARCHAR), value_text FROM fred.main.observations('GDP', page_size := 1) ORDER BY date;
+----
+2020-01-01	102.50
+2020-04-01	.
+2020-07-01	110.00
+
+query I
+SELECT count(*) FROM fred.main.observations('EMPTY');
+----
+0
+
+query I
+SELECT count(*) FROM fred.main.observations('GDP', start_offset := 100);
+----
+0
+
+query T
+SELECT typeof(date) FROM fred.main.observations('GDP') LIMIT 1;
+----
+DATE
+
+query T
+SELECT value_text FROM fred.main.alfred_observations('GDP', '2020-05-01', page_size := 1);
+----
+100.0
+
+query T
+SELECT value_text FROM fred.main.alfred_observations('GDP', '2020-05-28');
+----
+101.25
+
+query I
+SELECT count(*) FROM fred.main.alfred_observations('GDP', '2020-04-29');
+----
+0
+
+query TT
+SELECT value_text, CAST(realtime_end AS VARCHAR) FROM fred.main.alfred_revisions('GDP', observation_end := '2020-01-01', page_size := 1) ORDER BY realtime_start;
+----
+100.0	2020-05-27
+101.25	2020-06-24
+102.50	9999-12-31
+
+query T
+SELECT value_text FROM fred.main.initial_releases('GDP', observation_end := '2020-01-01', page_size := 1);
+----
+100.0
+
+query T
+SELECT CAST(vintage_date AS VARCHAR) FROM fred.main.vintage_dates('GDP', page_size := 1, realtime_end := '2020-06-30') ORDER BY vintage_date;
+----
+2020-04-30
+2020-05-28
+2020-06-25
+
+query IT
+SELECT count(*), max(value_text) FROM fred.main.alfred_revisions('GDP', page_size := 2, start_offset := 1, max_rows := 2);
+----
+2	102.50
+
+query TTT
+SELECT id, units, frequency FROM fred.main.series('GDP');
+----
+GDP	Billions of Dollars	Quarterly
+
+query I
+SELECT count(*) FROM fred.main.search_series('inflation', page_size := 1);
+----
+3
+
+query I
+SELECT count(*) FROM fred.main.search_series('empty');
+----
+0
+
+query T
+SELECT name FROM fred.main.category(125);
+----
+Fixture Trade
+
+query I
+SELECT count(*) FROM fred.main.category_children(0);
+----
+2
+
+query I
+SELECT count(*) FROM fred.main.category_series(125, page_size := 1);
+----
+3
+
+query I
+SELECT count(*) FROM fred.main.series_categories('GDP');
+----
+2
+
+query II
+SELECT count(*), count(*) FILTER (WHERE press_release) FROM fred.main.releases(page_size := 1);
+----
+2	1
+
+query I
+SELECT count(*) FROM fred.main.release_series(53, page_size := 1);
+----
+3
+
+query I
+SELECT count(*) FROM fred.main.release_dates(53, page_size := 1);
+----
+3
+
+query I
+SELECT count(*) FROM fred.main.sources(page_size := 1);
+----
+2
+
+statement error
+SELECT * FROM fred.main.observations('GDP', page_size := 0);
+----
+<REGEX>:.*
+
+statement error
+SELECT * FROM fred.main.observations('GDP', observation_start := '2020-02-30');
+----
+YYYY-MM-DD
+
+statement error
+SELECT * FROM fred.main.observations('GDP', observation_start := '2021-01-01', observation_end := '2020-01-01');
+----
+must not be after
+
+statement error
+SELECT * FROM fred.main.alfred_observations('GDP', '2020-05-01', realtime_start := '2020-01-01');
+----
+cannot be combined
+
+statement error
+SELECT * FROM fred.main.observations(NULL);
+----
+<REGEX>:.*
+
+statement error
+SELECT * FROM fred.main.alfred_revisions('STALLED', page_size := 1);
+----
+empty page
+
+statement error
+SELECT * FROM fred.main.alfred_revisions('CHANGED', page_size := 1);
+----
+count changed
+
+statement error
+SELECT * FROM fred.main.observations('MALFORMED');
+----
+invalid value
+
+statement error
+SELECT * FROM fred.main.observations('REDIRECT');
+----
+HTTP 302
+
+statement ok
+DROP SECRET fixture_key;
+
+statement error
+SELECT count(*) FROM fred.main.sources();
+----
+FRED_API_KEY
+
+statement ok
+DETACH fred;
