@@ -1,0 +1,48 @@
+{
+  "query": "SELECT * FROM duckdb_databases() WHERE database_name='fred'",
+  "columns": [
+    "database_name",
+    "database_oid",
+    "path",
+    "comment",
+    "tags",
+    "internal",
+    "type",
+    "readonly",
+    "encrypted",
+    "cipher",
+    "options"
+  ],
+  "rows": [
+    [
+      "fred",
+      22592,
+      null,
+      "# vgi-fred\n\nFRED and ALFRED economic data through authenticated, typed, streaming SQL table functions. Use observations for current data; alfred_observations(series_id, as_of) for a historical snapshot; alfred_revisions for every revision interval; initial_releases for first published values; vintage_dates for publication/revision dates. Discover series through search_series, series, category, category_children, category_series, series_categories, releases, release_series, release_dates and sources. Supply a fred_api secret or FRED_API_KEY. Dates are daily, not intraday. Missing observation markers become NULL; value_text retains the original representation. Use named date bounds to reduce upstream work and max_rows for an explicit result cap.\n\nQueries stream one API page at a time. Credentials stay out of continuation state. Read README.md for operational limits and examples.",
+      {
+        "vgi.agent_test_tasks": "[{\"name\": \"observations\", \"prompt\": \"Using fred.main.observations, fred observations. Use the arguments in this example and return the same columns: SELECT date, value FROM fred.main.observations('UNRATE', observation_start := '2020-01-01') ORDER BY date\"}, {\"name\": \"alfred_observations\", \"prompt\": \"Using fred.main.alfred_observations, alfred historical snapshot. Use the arguments in this example and return the same columns: SELECT date, value FROM fred.main.alfred_observations('GDP', '2020-07-30', observation_start := '2020-01-01') ORDER BY date\"}, {\"name\": \"alfred_revisions\", \"prompt\": \"Using fred.main.alfred_revisions, alfred revision history. Use the arguments in this example and return the same columns: SELECT date, value, realtime_start, realtime_end FROM fred.main.alfred_revisions('GDP', observation_start := '2020-01-01', observation_end := '2020-01-01') ORDER BY date, realtime_start\"}, {\"name\": \"initial_releases\", \"prompt\": \"Using fred.main.initial_releases, alfred initial releases. Use the arguments in this example and return the same columns: SELECT date, value, realtime_start FROM fred.main.initial_releases('GDP', observation_start := '2020-01-01') ORDER BY date\"}, {\"name\": \"vintage_dates\", \"prompt\": \"Using fred.main.vintage_dates, alfred vintage dates. Use the arguments in this example and return the same columns: SELECT vintage_date FROM fred.main.vintage_dates('GDP', realtime_start := '2020-01-01', realtime_end := '2020-12-31') ORDER BY vintage_date\"}, {\"name\": \"series\", \"prompt\": \"Using fred.main.series, fred series metadata. Use the arguments in this example and return the same columns: SELECT id, title, units, frequency FROM fred.main.series('GDP') ORDER BY id\"}, {\"name\": \"search_series\", \"prompt\": \"Using fred.main.search_series, search fred series. Use the arguments in this example and return the same columns: SELECT id, title, popularity FROM fred.main.search_series('unemployment', max_rows := 20) ORDER BY popularity DESC, id\"}, {\"name\": \"category\", \"prompt\": \"Using fred.main.category, fred category. Use the arguments in this example and return the same columns: SELECT id, name, parent_id FROM fred.main.category(125) ORDER BY id\"}, {\"name\": \"category_children\", \"prompt\": \"Using fred.main.category_children, fred category children. Use the arguments in this example and return the same columns: SELECT id, name FROM fred.main.category_children(0) ORDER BY id\"}, {\"name\": \"category_series\", \"prompt\": \"Using fred.main.category_series, fred category series. Use the arguments in this example and return the same columns: SELECT id, title FROM fred.main.category_series(125, max_rows := 100) ORDER BY id\"}, {\"name\": \"releases\", \"prompt\": \"Using fred.main.releases, fred releases. Use the arguments in this example and return the same columns: SELECT id, name FROM fred.main.releases() ORDER BY id\"}, {\"name\": \"release_series\", \"prompt\": \"Using fred.main.release_series, fred release series. Use the arguments in this example and return the same columns: SELECT id, title FROM fred.main.release_series(53, max_rows := 100) ORDER BY id\"}, {\"name\": \"release_dates\", \"prompt\": \"Using fred.main.release_dates, fred release calendar. Use the arguments in this example and return the same columns: SELECT release_id, date FROM fred.main.release_dates(53, realtime_start := '2020-01-01', realtime_end := '2020-12-31') ORDER BY date\"}, {\"name\": \"sources\", \"prompt\": \"Using fred.main.sources, fred data sources. Use the arguments in this example and return the same columns: SELECT id, name, link FROM fred.main.sources() ORDER BY id\"}, {\"name\": \"series_categories\", \"prompt\": \"Using fred.main.series_categories, fred series categories. Use the arguments in this example and return the same columns: SELECT id, name FROM fred.main.series_categories('GDP') ORDER BY id\"}, {\"name\": \"gdp_snapshot_vs_current\", \"prompt\": \"Compare U.S. GDP (FRED series GDP) as it was known on 2020-05-01 with today's published values, for observation dates 2020-01-01 through 2020-12-31. Return one row per observation date present in both, with exactly three columns: date (DATE), value_then (DOUBLE, the value known on 2020-05-01) and value_now (DOUBLE, today's value), ordered by date.\"}]",
+        "vgi.author": "vgi-fred contributors",
+        "vgi.copyright": "Copyright 2026 vgi-fred contributors",
+        "vgi.doc_llm": "FRED and ALFRED economic data through authenticated, typed, streaming SQL table functions. Use observations for current data; alfred_observations(series_id, as_of) for a historical snapshot; alfred_revisions for every revision interval; initial_releases for first published values; vintage_dates for publication/revision dates. Discover series through search_series, series, category, category_children, category_series, series_categories, releases, release_series, release_dates and sources. Supply a fred_api secret or FRED_API_KEY. Dates are daily, not intraday. Missing observation markers become NULL; value_text retains the original representation. Use named date bounds to reduce upstream work and max_rows for an explicit result cap.",
+        "vgi.doc_md": "# vgi-fred\n\nFRED and ALFRED economic data through authenticated, typed, streaming SQL table functions. Use observations for current data; alfred_observations(series_id, as_of) for a historical snapshot; alfred_revisions for every revision interval; initial_releases for first published values; vintage_dates for publication/revision dates. Discover series through search_series, series, category, category_children, category_series, series_categories, releases, release_series, release_dates and sources. Supply a fred_api secret or FRED_API_KEY. Dates are daily, not intraday. Missing observation markers become NULL; value_text retains the original representation. Use named date bounds to reduce upstream work and max_rows for an explicit result cap.\n\nQueries stream one API page at a time. Credentials stay out of continuation state. Read README.md for operational limits and examples.",
+        "vgi.executable_examples": "[{\"name\": \"discover_alfred\", \"description\": \"Discover the historical snapshot function without credentials or API requests\", \"sql\": \"SELECT function_name FROM duckdb_functions() WHERE database_name = 'fred' AND function_name = 'alfred_observations' ORDER BY function_name\", \"expected_result\": [{\"function_name\": \"alfred_observations\"}]}]",
+        "vgi.icon_url": "https://query.farm/media-kit/products/vgi/vgi-logo.png",
+        "vgi.keywords": "[\"fred\", \"alfred\", \"economic data\", \"vintage\", \"revisions\", \"time series\", \"duckdb\"]",
+        "vgi.license": "0BSD",
+        "vgi.source_url": "https://github.com/Query-farm/vgi-fred",
+        "vgi.subtitle": "Economic observations, historical vintages, revision intervals and discovery metadata.",
+        "vgi.support_contact": "https://github.com/Query-farm/vgi-fred/issues",
+        "vgi.support_policy_url": "https://github.com/Query-farm/vgi-fred#provenance-and-support",
+        "vgi.title": "FRED and ALFRED"
+      },
+      false,
+      "vgi",
+      false,
+      false,
+      null,
+      {
+        "location": "uvx --from git+https://github.com/Query-farm/vgi-fred@v0.1.0 vgi-fred-worker"
+      }
+    ]
+  ]
+}

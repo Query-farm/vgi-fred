@@ -1,0 +1,339 @@
+{
+  "schema_version": 1,
+  "catalogs": {
+    "released": {
+      "path": "coverage/catalog-released.json",
+      "sha256": "9729c6b9ba8552d2aec199039f23747756500a7d6070bc282b9f7573ad0df87f",
+      "review": {
+        "status": "approved",
+        "reviewer": "Codex /root/notebooks_ortools",
+        "reviewed_at": "2026-11-14T22:40:08.553813+00:00",
+        "catalog_sha256": "9729c6b9ba8552d2aec199039f23747756500a7d6070bc282b9f7573ad0df87f",
+        "notes": "All fifteen authenticated read functions remain in denominator. Release v0.1.0 and reviewed current public main resolve to 752ec0198a7c14eb7797bfa71e6c5958c41b2cd4. Complete source/dependency diff is empty. Actual catalog has 15 public read functions and no tables/views. All require FRED authentication and remain in denominator. Runtime receipts identify release tag; current interface review is separate."
+      }
+    },
+    "current": {
+      "path": "coverage/catalog-current.json",
+      "sha256": "5d824873f521f4400254e7997a9e0ea72e9100b8d924063bf364bc64a51a339a",
+      "review": {
+        "status": "approved",
+        "reviewer": "Codex /root/notebooks_ortools",
+        "reviewed_at": "2026-11-14T22:40:08.553813+00:00",
+        "catalog_sha256": "5d824873f521f4400254e7997a9e0ea72e9100b8d924063bf364bc64a51a339a",
+        "notes": "All fifteen authenticated read functions remain in denominator. Release v0.1.0 and reviewed current public main resolve to 752ec0198a7c14eb7797bfa71e6c5958c41b2cd4. Complete source/dependency diff is empty. Actual catalog has 15 public read functions and no tables/views. All require FRED authentication and remain in denominator. Runtime receipts identify release tag; current interface review is separate."
+      }
+    }
+  },
+  "notebooks": [
+    {
+      "path": "01_reconstruct_gdp_vintages.ipynb",
+      "sha256": "15d746088005831b36b4f4c70ed2cfb51eb45bc93a9fabe529b41f00f73ba5d6",
+      "execution": {
+        "path": "coverage/run-01.json",
+        "sha256": "d47212d9e9e943f0d5e1f12f47ebc59312b953fb2e2114719f493d7feb7d2a77"
+      }
+    },
+    {
+      "path": "02_search_rank_is_not_comparability.ipynb",
+      "sha256": "0f3085a5e5945c41764a918bd39a6d39b7c38e5e406bf30d424c21755cecd51a",
+      "execution": {
+        "path": "coverage/run-02.json",
+        "sha256": "eb72cce49a0cbabc73c9d35dd87ab2ae516167fa82adc8fd5d516520fe06fcc0"
+      }
+    }
+  ],
+  "examples": [
+    {
+      "object": {
+        "schema": "main",
+        "name": "series"
+      },
+      "notebook": "01_reconstruct_gdp_vintages.ipynb",
+      "sql": [
+        {
+          "cell": "68dd58d8",
+          "reference": "fred.main.series"
+        }
+      ],
+      "narrative_cells": [
+        "3f8eb99e"
+      ],
+      "result_cells": [
+        "68dd58d8",
+        "1115bc26"
+      ],
+      "interpretation_cells": [
+        "1115bc26"
+      ],
+      "review": {
+        "status": "approved",
+        "reviewer": "Codex /root/notebooks_ortools",
+        "reviewed_at": "2026-11-14T22:40:08.553813+00:00",
+        "notebook_sha256": "15d746088005831b36b4f4c70ed2cfb51eb45bc93a9fabe529b41f00f73ba5d6",
+        "catalog_sha256": [
+          "9729c6b9ba8552d2aec199039f23747756500a7d6070bc282b9f7573ad0df87f",
+          "5d824873f521f4400254e7997a9e0ea72e9100b8d924063bf364bc64a51a339a"
+        ],
+        "purpose": "Establish measured frequency/units before calculating growth.",
+        "finding": "Returned Quarterly and Billions of US dollars fields are independently checked; synthetic notes and annual-rate adjustment delimit interpretation. Quarter-on-quarter growth is a ratio, not an annualized change."
+      }
+    },
+    {
+      "object": {
+        "schema": "main",
+        "name": "alfred_revisions"
+      },
+      "notebook": "01_reconstruct_gdp_vintages.ipynb",
+      "sql": [
+        {
+          "cell": "a329f72c",
+          "reference": "fred.main.alfred_revisions"
+        }
+      ],
+      "narrative_cells": [
+        "3c90abf9"
+      ],
+      "result_cells": [
+        "a329f72c",
+        "e481db1f",
+        "1115bc26"
+      ],
+      "interpretation_cells": [
+        "1115bc26"
+      ],
+      "review": {
+        "status": "approved",
+        "reviewer": "Codex /root/notebooks_ortools",
+        "reviewed_at": "2026-11-14T22:40:08.553813+00:00",
+        "notebook_sha256": "15d746088005831b36b4f4c70ed2cfb51eb45bc93a9fabe529b41f00f73ba5d6",
+        "catalog_sha256": [
+          "9729c6b9ba8552d2aec199039f23747756500a7d6070bc282b9f7573ad0df87f",
+          "5d824873f521f4400254e7997a9e0ea72e9100b8d924063bf364bc64a51a339a"
+        ],
+        "purpose": "Retain full inclusive validity intervals as an independent snapshot reconstruction source.",
+        "finding": "Full revision history stays fixed across knowledge dates; interval filtering exactly reproduces selected snapshot. Missing markers remain NULL, intervals do not overlap and all twelve temporal checks pass."
+      }
+    },
+    {
+      "object": {
+        "schema": "main",
+        "name": "alfred_observations"
+      },
+      "notebook": "01_reconstruct_gdp_vintages.ipynb",
+      "sql": [
+        {
+          "cell": "a329f72c",
+          "reference": "fred.main.alfred_observations"
+        }
+      ],
+      "narrative_cells": [
+        "3c90abf9"
+      ],
+      "result_cells": [
+        "a329f72c",
+        "5701feaf",
+        "71b01dc1",
+        "347750c7"
+      ],
+      "interpretation_cells": [
+        "347750c7"
+      ],
+      "review": {
+        "status": "approved",
+        "reviewer": "Codex /root/notebooks_ortools",
+        "reviewed_at": "2026-11-14T22:40:08.553813+00:00",
+        "notebook_sha256": "15d746088005831b36b4f4c70ed2cfb51eb45bc93a9fabe529b41f00f73ba5d6",
+        "catalog_sha256": [
+          "9729c6b9ba8552d2aec199039f23747756500a7d6070bc282b9f7573ad0df87f",
+          "5d824873f521f4400254e7997a9e0ea72e9100b8d924063bf364bc64a51a339a"
+        ],
+        "purpose": "Separate available vintage information from a fixed later reference.",
+        "finding": "AS_OF advances from May 1 to August 1: Q1 level 90→92 and Q2 becomes reported missing; fixed reference/history unchanged. Q1 quarterly growth −10.45%→−8.46%; Q2 gap blocks Q3 growth. Synthetic temporal mechanism only."
+      }
+    },
+    {
+      "object": {
+        "schema": "main",
+        "name": "category_children"
+      },
+      "notebook": "02_search_rank_is_not_comparability.ipynb",
+      "sql": [
+        {
+          "cell": "category-sql",
+          "reference": "fred.main.category_children"
+        }
+      ],
+      "narrative_cells": [
+        "category-story"
+      ],
+      "result_cells": [
+        "category-sql",
+        "result",
+        "audit"
+      ],
+      "interpretation_cells": [
+        "result"
+      ],
+      "review": {
+        "status": "approved",
+        "reviewer": "Codex /root/notebooks_ortools",
+        "reviewed_at": "2026-11-14T22:40:08.553813+00:00",
+        "notebook_sha256": "0f3085a5e5945c41764a918bd39a6d39b7c38e5e406bf30d424c21755cecd51a",
+        "catalog_sha256": [
+          "9729c6b9ba8552d2aec199039f23747756500a7d6070bc282b9f7573ad0df87f",
+          "5d824873f521f4400254e7997a9e0ea72e9100b8d924063bf364bc64a51a339a"
+        ],
+        "purpose": "Establish the root navigation context and verify selected category parentage.",
+        "finding": "Two synthetic root children returned; selected category 125 matches one child with parent 0. This is a checked immediate-parent path, not recursive whole-catalog coverage."
+      }
+    },
+    {
+      "object": {
+        "schema": "main",
+        "name": "series_categories"
+      },
+      "notebook": "02_search_rank_is_not_comparability.ipynb",
+      "sql": [
+        {
+          "cell": "category-sql",
+          "reference": "fred.main.series_categories"
+        }
+      ],
+      "narrative_cells": [
+        "category-story"
+      ],
+      "result_cells": [
+        "category-sql",
+        "result",
+        "audit"
+      ],
+      "interpretation_cells": [
+        "result"
+      ],
+      "review": {
+        "status": "approved",
+        "reviewer": "Codex /root/notebooks_ortools",
+        "reviewed_at": "2026-11-14T22:40:08.553813+00:00",
+        "notebook_sha256": "0f3085a5e5945c41764a918bd39a6d39b7c38e5e406bf30d424c21755cecd51a",
+        "catalog_sha256": [
+          "9729c6b9ba8552d2aec199039f23747756500a7d6070bc282b9f7573ad0df87f",
+          "5d824873f521f4400254e7997a9e0ea72e9100b8d924063bf364bc64a51a339a"
+        ],
+        "purpose": "Use seed-series membership as independent support for chosen discovery category.",
+        "finding": "GDP belongs to synthetic category 125; membership intersects selected category/root-child relation. Navigation unchanged when popularity threshold changes; no inferred category based on title text."
+      }
+    },
+    {
+      "object": {
+        "schema": "main",
+        "name": "category"
+      },
+      "notebook": "02_search_rank_is_not_comparability.ipynb",
+      "sql": [
+        {
+          "cell": "category-sql",
+          "reference": "fred.main.category"
+        }
+      ],
+      "narrative_cells": [
+        "category-story"
+      ],
+      "result_cells": [
+        "category-sql",
+        "result",
+        "audit"
+      ],
+      "interpretation_cells": [
+        "result"
+      ],
+      "review": {
+        "status": "approved",
+        "reviewer": "Codex /root/notebooks_ortools",
+        "reviewed_at": "2026-11-14T22:40:08.553813+00:00",
+        "notebook_sha256": "0f3085a5e5945c41764a918bd39a6d39b7c38e5e406bf30d424c21755cecd51a",
+        "catalog_sha256": [
+          "9729c6b9ba8552d2aec199039f23747756500a7d6070bc282b9f7573ad0df87f",
+          "5d824873f521f4400254e7997a9e0ea72e9100b8d924063bf364bc64a51a339a"
+        ],
+        "purpose": "Read category identity, parent and notes before treating its members as relevant.",
+        "finding": "Returned National output synthetic category 125 has parent 0 and explicitly cautions that membership does not imply comparable definitions. Root and seed joins verified before screening."
+      }
+    },
+    {
+      "object": {
+        "schema": "main",
+        "name": "category_series"
+      },
+      "notebook": "02_search_rank_is_not_comparability.ipynb",
+      "sql": [
+        {
+          "cell": "fetch-sql",
+          "reference": "fred.main.category_series"
+        }
+      ],
+      "narrative_cells": [
+        "fetch-story"
+      ],
+      "result_cells": [
+        "fetch-sql",
+        "filter-sql",
+        "result",
+        "chart",
+        "audit"
+      ],
+      "interpretation_cells": [
+        "result"
+      ],
+      "review": {
+        "status": "approved",
+        "reviewer": "Codex /root/notebooks_ortools",
+        "reviewed_at": "2026-11-14T22:40:08.553813+00:00",
+        "notebook_sha256": "0f3085a5e5945c41764a918bd39a6d39b7c38e5e406bf30d424c21755cecd51a",
+        "catalog_sha256": [
+          "9729c6b9ba8552d2aec199039f23747756500a7d6070bc282b9f7573ad0df87f",
+          "5d824873f521f4400254e7997a9e0ea72e9100b8d924063bf364bc64a51a339a"
+        ],
+        "purpose": "Compare a complete category population with broader text-search candidates.",
+        "finding": "Five members retrieved in three pages; leftjoin retains outside-category GDPX among six hits. Definition matching leavesGDP / GDI; category itself does not ensure frequency/units/adjustment compatibility."
+      }
+    },
+    {
+      "object": {
+        "schema": "main",
+        "name": "search_series"
+      },
+      "notebook": "02_search_rank_is_not_comparability.ipynb",
+      "sql": [
+        {
+          "cell": "fetch-sql",
+          "reference": "fred.main.search_series"
+        }
+      ],
+      "narrative_cells": [
+        "fetch-story"
+      ],
+      "result_cells": [
+        "fetch-sql",
+        "filter-sql",
+        "result",
+        "chart",
+        "audit"
+      ],
+      "interpretation_cells": [
+        "result"
+      ],
+      "review": {
+        "status": "approved",
+        "reviewer": "Codex /root/notebooks_ortools",
+        "reviewed_at": "2026-11-14T22:40:08.553813+00:00",
+        "notebook_sha256": "0f3085a5e5945c41764a918bd39a6d39b7c38e5e406bf30d424c21755cecd51a",
+        "catalog_sha256": [
+          "9729c6b9ba8552d2aec199039f23747756500a7d6070bc282b9f7573ad0df87f",
+          "5d824873f521f4400254e7997a9e0ea72e9100b8d924063bf364bc64a51a339a"
+        ],
+        "purpose": "Keep attention rank separate from analytical compatibility and shortlist policy.",
+        "finding": "All six popularity-sorted hits materialized once over three pages. Highest-ranked GDPX is outside the category; other rows fail units/frequency/adjustment. Threshold 80→40 adds GDI to GDP without changing populations, navigation or 9 HTTP GETs; no live rank/calibration claim."
+      }
+    }
+  ]
+}

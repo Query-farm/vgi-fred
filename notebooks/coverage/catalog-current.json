@@ -1,0 +1,173 @@
+{
+  "schema_version": 1,
+  "repository": "Query-farm/vgi-fred",
+  "revision": "752ec0198a7c14eb7797bfa71e6c5958c41b2cd4",
+  "captured_at": "2026-11-14T22:40:08.553813+00:00",
+  "default_schema": "main",
+  "scope": "all_public_functions_and_tables",
+  "complete": true,
+  "evidence": [
+    {
+      "path": "coverage/catalog-provenance.json",
+      "sha256": "5f9525c7a0a6301fca4a38c0bc70b06233786d012407da732974ec18e895d35b",
+      "description": "Immutable release/current identities, alias counting, data and secret boundaries."
+    },
+    {
+      "path": "coverage/current-source-registration.json",
+      "sha256": "80a2fde838964db5a0e47a59ac3db40ada6aa9ae7e36dd26ce9552cfc3db8ff4",
+      "description": "Complete FUNCTIONS registry/source texts and hashes/links; same current/release source with empty implementation/dependency diff."
+    }
+  ],
+  "objects": [
+    {
+      "schema": "main",
+      "name": "sources",
+      "kind": "function",
+      "signatures": [
+        "sources(BIGINT, VARCHAR, VARCHAR, BIGINT, BIGINT) -> TABLE"
+      ],
+      "authentication": "required",
+      "access": "read"
+    },
+    {
+      "schema": "main",
+      "name": "series_categories",
+      "kind": "function",
+      "signatures": [
+        "series_categories(VARCHAR, BIGINT, VARCHAR, VARCHAR, BIGINT, BIGINT) -> TABLE"
+      ],
+      "authentication": "required",
+      "access": "read"
+    },
+    {
+      "schema": "main",
+      "name": "series",
+      "kind": "function",
+      "signatures": [
+        "series(VARCHAR, BIGINT, VARCHAR, VARCHAR, BIGINT, BIGINT) -> TABLE"
+      ],
+      "authentication": "required",
+      "access": "read"
+    },
+    {
+      "schema": "main",
+      "name": "search_series",
+      "kind": "function",
+      "signatures": [
+        "search_series(VARCHAR, VARCHAR, VARCHAR, VARCHAR, BIGINT, VARCHAR, VARCHAR, VARCHAR, BIGINT, VARCHAR, VARCHAR, BIGINT, VARCHAR) -> TABLE"
+      ],
+      "authentication": "required",
+      "access": "read"
+    },
+    {
+      "schema": "main",
+      "name": "release_series",
+      "kind": "function",
+      "signatures": [
+        "release_series(BIGINT, BIGINT, VARCHAR, VARCHAR, BIGINT, BIGINT) -> TABLE"
+      ],
+      "authentication": "required",
+      "access": "read"
+    },
+    {
+      "schema": "main",
+      "name": "release_dates",
+      "kind": "function",
+      "signatures": [
+        "release_dates(BIGINT, VARCHAR, VARCHAR, VARCHAR, BIGINT, BIGINT, BIGINT, BOOLEAN) -> TABLE"
+      ],
+      "authentication": "required",
+      "access": "read"
+    },
+    {
+      "schema": "main",
+      "name": "observations",
+      "kind": "function",
+      "signatures": [
+        "observations(VARCHAR, VARCHAR, VARCHAR, VARCHAR, VARCHAR, VARCHAR, BIGINT, BIGINT, VARCHAR, BIGINT, VARCHAR, VARCHAR) -> TABLE"
+      ],
+      "authentication": "required",
+      "access": "read"
+    },
+    {
+      "schema": "main",
+      "name": "category_children",
+      "kind": "function",
+      "signatures": [
+        "category_children(BIGINT, BIGINT, VARCHAR, VARCHAR, BIGINT, BIGINT) -> TABLE"
+      ],
+      "authentication": "required",
+      "access": "read"
+    },
+    {
+      "schema": "main",
+      "name": "alfred_observations",
+      "kind": "function",
+      "signatures": [
+        "alfred_observations(VARCHAR, VARCHAR, VARCHAR, VARCHAR, VARCHAR, VARCHAR, VARCHAR, BIGINT, BIGINT, VARCHAR, BIGINT, VARCHAR, VARCHAR) -> TABLE"
+      ],
+      "authentication": "required",
+      "access": "read"
+    },
+    {
+      "schema": "main",
+      "name": "category_series",
+      "kind": "function",
+      "signatures": [
+        "category_series(BIGINT, BIGINT, VARCHAR, VARCHAR, BIGINT, BIGINT) -> TABLE"
+      ],
+      "authentication": "required",
+      "access": "read"
+    },
+    {
+      "schema": "main",
+      "name": "initial_releases",
+      "kind": "function",
+      "signatures": [
+        "initial_releases(VARCHAR, VARCHAR, VARCHAR, VARCHAR, VARCHAR, VARCHAR, BIGINT, BIGINT, VARCHAR, BIGINT, VARCHAR, VARCHAR) -> TABLE"
+      ],
+      "authentication": "required",
+      "access": "read"
+    },
+    {
+      "schema": "main",
+      "name": "alfred_revisions",
+      "kind": "function",
+      "signatures": [
+        "alfred_revisions(VARCHAR, VARCHAR, VARCHAR, VARCHAR, VARCHAR, VARCHAR, BIGINT, BIGINT, VARCHAR, BIGINT, VARCHAR, VARCHAR) -> TABLE"
+      ],
+      "authentication": "required",
+      "access": "read"
+    },
+    {
+      "schema": "main",
+      "name": "releases",
+      "kind": "function",
+      "signatures": [
+        "releases(BIGINT, VARCHAR, VARCHAR, BIGINT, BIGINT) -> TABLE"
+      ],
+      "authentication": "required",
+      "access": "read"
+    },
+    {
+      "schema": "main",
+      "name": "category",
+      "kind": "function",
+      "signatures": [
+        "category(BIGINT, BIGINT, VARCHAR, VARCHAR, BIGINT, BIGINT) -> TABLE"
+      ],
+      "authentication": "required",
+      "access": "read"
+    },
+    {
+      "schema": "main",
+      "name": "vintage_dates",
+      "kind": "function",
+      "signatures": [
+        "vintage_dates(VARCHAR, VARCHAR, VARCHAR, BIGINT, VARCHAR, BIGINT, BIGINT) -> TABLE"
+      ],
+      "authentication": "required",
+      "access": "read"
+    }
+  ]
+}

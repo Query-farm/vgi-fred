@@ -325,3 +325,5 @@ third-party economic data. Template update review: `make template-diff`.
 [Reconstruct GDP vintages](notebooks/README.md) compares historical knowledge dates,
 revision intervals and quarter-to-quarter growth using explicit synthetic local
 fixtures through the published worker. The notebook runs independently of this checkout.
+
+The [series discovery notebook](notebooks/02_search_rank_is_not_comparability.ipynb) separates synthetic search ranking from category and measurement compatibility. See the [notebook index](notebooks/README.md) for both executed stories and protected experiments.

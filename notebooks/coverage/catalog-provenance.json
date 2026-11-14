@@ -1,0 +1,11 @@
+{
+  "repository": "Query-farm/vgi-fred",
+  "release_tag": "v0.1.0",
+  "release_revision": "752ec0198a7c14eb7797bfa71e6c5958c41b2cd4",
+  "current_public_revision": "752ec0198a7c14eb7797bfa71e6c5958c41b2cd4",
+  "engine": "Haybarn 2.0.0rc11 / VGI e75482339d",
+  "released_launch": "uvx --from git+https://github.com/Query-farm/vgi-fred@v0.1.0 vgi-fred-worker",
+  "comparison": "Release v0.1.0 and reviewed current public main resolve to 752ec0198a7c14eb7797bfa71e6c5958c41b2cd4. Complete source/dependency diff is empty. Actual catalog has 15 public read functions and no tables/views. All require FRED authentication and remain in denominator. Runtime receipts identify release tag; current interface review is separate.",
+  "data_isolation": "Authored synthetic GDP and discovery JSON served only on ephemeral 127.0.0.1. Shared empty temporary SQL-secret directory/persistence disabled, fake public all-zero TEMPORARY key verified and dropped. Helpers clear inherited FRED settings and restore after run. No real key or live API use.",
+  "captured_at": "2026-11-14T22:40:08.553813+00:00"
+}

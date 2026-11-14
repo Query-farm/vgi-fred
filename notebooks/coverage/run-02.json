@@ -1,0 +1,120 @@
+{
+  "schema_version": 1,
+  "notebook_sha256": "0f3085a5e5945c41764a918bd39a6d39b7c38e5e406bf30d424c21755cecd51a",
+  "catalog_sha256": "9729c6b9ba8552d2aec199039f23747756500a7d6070bc282b9f7573ad0df87f",
+  "worker_revision": "v0.1.0",
+  "status": "success",
+  "executed_at": "2026-11-14T22:40:08.481845+00:00",
+  "engine": "Haybarn 2.0.0rc11 / VGI e75482339d",
+  "command": "uv run --locked --extra runner vgi-notebooks",
+  "catalog_aliases": [
+    "fred"
+  ],
+  "cells": [
+    {
+      "id": "parameters",
+      "status": "success",
+      "execution_count": 1,
+      "source_sha256": "76c406163cab80f2202d9d22e9d3700c1df8374d146f04a13c400af8e3d7d715",
+      "outputs_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "id": "install",
+      "status": "success",
+      "execution_count": 2,
+      "source_sha256": "5d4d3de4744a8ecac88fc92612ada8c52aeeb372e341ac3526bad692607b9b39",
+      "outputs_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "id": "setup",
+      "status": "success",
+      "execution_count": 3,
+      "source_sha256": "f31cfde51ecba5ff198cd60fcca3c21c67c13aa89b09bba25f0e4c636c4422f7",
+      "outputs_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "id": "attach",
+      "status": "success",
+      "execution_count": 4,
+      "source_sha256": "e1d2b7f49c110b36629b083d7b2acd6016fbce30e29402bd5255da1ebc42be0a",
+      "outputs_sha256": "e9be890534b3f21d79b0b6f3267fd9af1038875e55d4aacb1991cb3bb5a95ee2"
+    },
+    {
+      "id": "secret-check",
+      "status": "success",
+      "execution_count": 5,
+      "source_sha256": "f4cdcaecb37e4db275318c6f77fff7a2b6499a4e53fb28f34d6e99216065835b",
+      "outputs_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "id": "category-sql",
+      "status": "success",
+      "execution_count": 6,
+      "source_sha256": "16cac77c64a2c1774d04972c7e08d163edc6dcfa0af3b989a1431c858b35bda5",
+      "outputs_sha256": "49b602832eff194168e854d56352aa3345095ea93af5ea4381d8fcb898d49847"
+    },
+    {
+      "id": "fetch-sql",
+      "status": "success",
+      "execution_count": 7,
+      "source_sha256": "5ec5e2900ff687bf1580202ed2217a95e66c08ff031b4db9704ddf84823a534d",
+      "outputs_sha256": "6213a9723bc526515f8e48761a1e4a8e63e15c1004cfa28cd680451e6537c84b"
+    },
+    {
+      "id": "filter-sql",
+      "status": "success",
+      "execution_count": 8,
+      "source_sha256": "2f6099f747f1c9ad60310c9a3cff90ffd7ce9b5e296ef4b7b6722e65f1b7f8bf",
+      "outputs_sha256": "eb5410e1f56e443ceb0a8075da528079f255df75f70418b36f4587a86c735f85"
+    },
+    {
+      "id": "capture",
+      "status": "success",
+      "execution_count": 9,
+      "source_sha256": "13794937dfc3f0b57027765099c7549a9b4459441a6a944eb653864be1f73ce7",
+      "outputs_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "id": "funnel-capture",
+      "status": "success",
+      "execution_count": 10,
+      "source_sha256": "ccbedf0f566d0283bb45dd97a74e320744ec2f99b72611fb759cbf21ea39655a",
+      "outputs_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "id": "result",
+      "status": "success",
+      "execution_count": 11,
+      "source_sha256": "715afccd41cc51cf5c3fcbac9261da7f9f8f3c62d131a6fdba22315fc18a9eb4",
+      "outputs_sha256": "68e6dd8f057a8692ee199407558461073a3b748eff55cea35e456ee15e5bdeed"
+    },
+    {
+      "id": "chart",
+      "status": "success",
+      "execution_count": 12,
+      "source_sha256": "225e9ef94746146aafbfbe821d2160b1b5ba8649d67282a961448d80eb72ad3c",
+      "outputs_sha256": "2db9f584eeaf0c0b382296018efa92801062b163a4d0866b81f3bb719791f5b5"
+    },
+    {
+      "id": "checks-sql",
+      "status": "success",
+      "execution_count": 13,
+      "source_sha256": "3834d33440fd87feaf57f6b3d25c264c0c8e0a98e00da416aed0b0225b6ba96c",
+      "outputs_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "id": "audit",
+      "status": "success",
+      "execution_count": 14,
+      "source_sha256": "ea7e6b838f564acaf79f8cfa02f8b374662db2102e7dee93624a97fed47f8ed7",
+      "outputs_sha256": "d50bf3308d39713ba066dc3ee9be8c94be626c0e9e2e0d3e86f27521f3306e03"
+    },
+    {
+      "id": "cleanup",
+      "status": "success",
+      "execution_count": 15,
+      "source_sha256": "113e219e482817c2468c695de2939051e1c30e7c63dcdb7565422d5c542b39f3",
+      "outputs_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    }
+  ]
+}
