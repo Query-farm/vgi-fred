@@ -126,8 +126,8 @@ VINTAGE_PATH_EXAMPLE = FunctionExample(
 )
 SEARCH_IN_CATEGORY_EXAMPLE = FunctionExample(
     description=(
-        "Keep only the top 100 'unemployment rate' search hits that are filed in FRED's Unemployment Rate "
-        "category (32447), most popular first"
+        "Of the top 100 'unemployment rate' search hits, show the 10 most popular that are filed in FRED's "
+        "Unemployment Rate category (32447)"
     ),
     sql=(
         "SELECT s.id, s.title, s.popularity "
