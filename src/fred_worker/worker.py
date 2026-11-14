@@ -56,6 +56,16 @@ CATALOG_TAGS["vgi.agent_test_tasks"] = json.dumps(
         }
         for fn in FUNCTIONS
     ]
+    + [
+        {
+            # Composed: an ALFRED snapshot joined to current observations (graded in vgi-agent-tests.yaml).
+            "name": "gdp_snapshot_vs_current",
+            "prompt": "Compare U.S. GDP (FRED series GDP) as it was known on 2020-05-01 with today's published "
+            "values, for observation dates 2020-01-01 through 2020-12-31. Return one row per observation date "
+            "present in both, with exactly three columns: date (DATE), value_then (DOUBLE, the value known on "
+            "2020-05-01) and value_now (DOUBLE, today's value), ordered by date.",
+        }
+    ]
 )
 
 

@@ -117,6 +117,16 @@ SELECT date, value, realtime_start
 FROM fred.main.initial_releases('GDP', observation_start := '2020-01-01')
 ORDER BY date;
 
+-- Combine functions: how far has each 2020 quarter moved since its first print?
+SELECT date, f.value AS first_value, c.value AS current_value,
+       c.value - f.value AS revision
+FROM fred.main.initial_releases('GDP',
+    observation_start := '2020-01-01', observation_end := '2020-12-31') AS f
+JOIN fred.main.observations('GDP',
+    observation_start := '2020-01-01', observation_end := '2020-12-31') AS c
+    USING (date)
+ORDER BY date;
+
 -- Dates on which this series gained or revised observations.
 SELECT vintage_date
 FROM fred.main.vintage_dates('GDP',

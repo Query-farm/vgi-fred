@@ -30,3 +30,6 @@ tasks:
     reference_sql: "SELECT id, name, link FROM fred.main.sources() ORDER BY id"
   - name: series_categories
     reference_sql: "SELECT id, name FROM fred.main.series_categories('GDP') ORDER BY id"
+  # Composed: the snapshot is fixed history; the reference re-runs at grade time, so today's values match.
+  - name: gdp_snapshot_vs_current
+    reference_sql: "SELECT date, t.value AS value_then, n.value AS value_now FROM fred.main.alfred_observations('GDP', '2020-05-01', observation_start := '2020-01-01', observation_end := '2020-12-31') AS t JOIN fred.main.observations('GDP', observation_start := '2020-01-01', observation_end := '2020-12-31') AS n USING (date) ORDER BY date"

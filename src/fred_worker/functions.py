@@ -96,6 +96,47 @@ RELEASE_DATES = pa.schema(
     ]
 )
 
+# Composed examples: each combines two of this worker's functions in one query. Each
+# is attached to the function that drives it (and so also reaches the schema list).
+FIRST_PRINT_REVISION_EXAMPLE = FunctionExample(
+    description=(
+        "Compare each 2020 GDP quarter's first published value (initial_releases) with today's value "
+        "(observations); revision is current minus first print, NULL where FRED reports a missing value"
+    ),
+    sql=(
+        "SELECT date, f.value AS first_value, c.value AS current_value, c.value - f.value AS revision "
+        "FROM fred.main.initial_releases('GDP', observation_start := '2020-01-01', "
+        "observation_end := '2020-12-31') AS f "
+        "JOIN fred.main.observations('GDP', observation_start := '2020-01-01', "
+        "observation_end := '2020-12-31') AS c USING (date) ORDER BY date"
+    ),
+)
+VINTAGE_PATH_EXAMPLE = FunctionExample(
+    description=(
+        "Trace the Q1 2020 GDP value (observation date 2020-01-01) as it stood on each 2020 vintage date: "
+        "vintage_dates joined to the alfred_revisions validity interval covering it, from the first release on"
+    ),
+    sql=(
+        "SELECT v.vintage_date, r.value AS q1_2020_value "
+        "FROM fred.main.vintage_dates('GDP', realtime_start := '2020-01-01', realtime_end := '2020-12-31') AS v "
+        "JOIN fred.main.alfred_revisions('GDP', observation_start := '2020-01-01', "
+        "observation_end := '2020-01-01') AS r "
+        "ON v.vintage_date BETWEEN r.realtime_start AND r.realtime_end ORDER BY v.vintage_date"
+    ),
+)
+SEARCH_IN_CATEGORY_EXAMPLE = FunctionExample(
+    description=(
+        "Keep only the top 100 'unemployment rate' search hits that are filed in FRED's Unemployment Rate "
+        "category (32447), most popular first"
+    ),
+    sql=(
+        "SELECT s.id, s.title, s.popularity "
+        "FROM fred.main.search_series('unemployment rate', max_rows := 100) AS s "
+        "WHERE s.id IN (SELECT id FROM fred.main.category_series(32447)) "
+        "ORDER BY s.popularity DESC, s.id LIMIT 10"
+    ),
+)
+
 
 @dataclass(frozen=True, kw_only=True)
 class PageArgs:
@@ -417,8 +458,13 @@ def _count(body: dict[str, Any], name: str) -> int:
     return value
 
 
-def function_meta(name: str, title: str, description: str, schema: pa.Schema, sql: str) -> Any:
-    """Build consistent, discoverable metadata for an authenticated table function."""
+def function_meta(
+    name: str, title: str, description: str, schema: pa.Schema, sql: str, *composed: FunctionExample
+) -> Any:
+    """Build consistent, discoverable metadata for an authenticated table function.
+
+    ``composed`` examples combine this function with others and follow its own example.
+    """
     types = {
         "string": "VARCHAR",
         "int64": "BIGINT",
@@ -465,7 +511,7 @@ def function_meta(name: str, title: str, description: str, schema: pa.Schema, sq
             ]
         ),
     }
-    Meta.examples = [FunctionExample(sql=sql, description=title)]
+    Meta.examples = [FunctionExample(sql=sql, description=title), *composed]
     return Meta
 
 
@@ -630,6 +676,7 @@ class InitialReleases(FredFunction[HistoryArgs]):
         OBSERVATIONS,
         "SELECT date, value, realtime_start FROM fred.main.initial_releases('GDP', "
         "observation_start := '2020-01-01') ORDER BY date",
+        FIRST_PRINT_REVISION_EXAMPLE,
     )
 
 
@@ -648,6 +695,7 @@ class VintageDates(FredFunction[VintageArgs]):
         VINTAGES,
         "SELECT vintage_date FROM fred.main.vintage_dates('GDP', realtime_start := '2020-01-01', "
         "realtime_end := '2020-12-31') ORDER BY vintage_date",
+        VINTAGE_PATH_EXAMPLE,
     )
 
 
@@ -683,6 +731,7 @@ class SearchSeries(FredFunction[SearchArgs]):
         SERIES,
         "SELECT id, title, popularity FROM fred.main.search_series('unemployment', max_rows := 20) "
         "ORDER BY popularity DESC, id",
+        SEARCH_IN_CATEGORY_EXAMPLE,
     )
 
 
