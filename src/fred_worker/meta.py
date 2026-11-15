@@ -63,14 +63,16 @@ CATALOG_COMMENT = (
     "release and source discovery. Needs a free FRED API key."
 )
 CATALOG_DOC_LLM = (
-    "FRED and ALFRED economic data through authenticated, typed, streaming SQL table functions. "
-    "Use observations for current data; alfred_observations(series_id, as_of) for a historical snapshot; "
-    "alfred_revisions for every revision interval; initial_releases for first published values; "
-    "vintage_dates for publication/revision dates. Discover series through search_series, series, "
-    "category, category_children, category_series, series_categories, releases, release_series, "
-    "release_dates and sources. Supply a fred_api secret or FRED_API_KEY. Dates are daily, not intraday. "
-    "Missing observation markers become NULL; value_text retains the original representation. "
-    "Use named date bounds to reduce upstream work and max_rows for an explicit result cap."
+    "FRED and ALFRED economic data from the Federal Reserve Bank of St. Louis, through authenticated, "
+    "typed, streaming SQL table functions. Reach for it to find an economic indicator, read its values, "
+    "and ask what was known about it on a past date. The central key is the FRED series id (e.g. GDP, "
+    "UNRATE): discover it by text search or by browsing the category hierarchy, releases and sources, "
+    "then read that series' observations. ALFRED adds the real-time dimension: every value carries the "
+    "interval during which it was the published figure, so the same series can be read as currently "
+    "published, as a snapshot known on one as-of date, as its full revision history, or as first-release "
+    "values. Supply a fred_api secret or FRED_API_KEY. Dates are daily, not intraday. Missing observation "
+    "markers become NULL; value_text retains the original representation. Pass named date bounds to "
+    "reduce upstream work and max_rows for an explicit result cap."
 )
 CATALOG_SOURCES_MD = (
     "\n\n## Sources and references\n\n"
@@ -86,11 +88,20 @@ CATALOG_DOC_MD = (
     "Read README.md for operational limits and examples." + CATALOG_SOURCES_MD
 )
 SCHEMA_COMMENT = "FRED and ALFRED table functions: current observations, vintages, revisions and series discovery."
-SCHEMA_DOC_LLM = CATALOG_DOC_LLM
+SCHEMA_DOC_LLM = (
+    "Table functions over the FRED API, in two groups. Discovery functions resolve a series id from "
+    "text, the category tree (category zero is the root), economic releases or data sources, and return "
+    "series metadata such as units and frequency. Data functions take a series id and return its "
+    "observations: either as currently published, or through ALFRED's real-time periods (a snapshot "
+    "known on an as-of date, every revision interval, first-release values, and the vintage dates "
+    "themselves). Every function streams one API page at a time, needs a fred_api secret or "
+    "FRED_API_KEY, and treats SQL WHERE filters as local; named date bounds cut API work."
+)
 SCHEMA_DOC_MD = (
     "## main\n\n"
-    + CATALOG_DOC_LLM
-    + "\n\nStart with search_series and series, then query observations or an explicit historical ALFRED snapshot."
+    + SCHEMA_DOC_LLM
+    + "\n\nA typical path: search for a series to get its id, check its metadata, then read its "
+    "observations currently or as an explicit historical ALFRED snapshot."
 )
 AGENT_TEST_TASKS: list[dict[str, str]] = []
 CATALOG_TAGS = {

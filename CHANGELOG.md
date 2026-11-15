@@ -7,6 +7,11 @@
   documentation and where to get an API key (VGI183).
 - The `main` schema comment is now a short one-line summary, so the schema's
   `vgi.doc_md` adds detail instead of repeating it (VGI102).
+- The catalog and `main` schema docs now give an overview (data source, the
+  series id as the central key, the current versus real-time ALFRED views, and
+  caveats) instead of naming each table function (VGI173). The schema docs are
+  now distinct from the catalog docs; per-function guidance stays on each
+  function's own description.
 
 ## 0.1.1 (unreleased)
 
