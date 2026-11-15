@@ -153,7 +153,7 @@ def get_json(endpoint: str, params: dict[str, str | int], key: str, config: Conf
     query = urllib.parse.urlencode({**params, "api_key": key, "file_type": "json"})
     request = urllib.request.Request(
         f"{config.base_url}/{endpoint}?{query}",
-        headers={"Accept": "application/json", "User-Agent": "vgi-fred/0.1.0"},
+        headers={"Accept": "application/json", "User-Agent": "vgi-fred/0.1.1"},
     )
     opener = urllib.request.build_opener(_NoRedirect())
     deadline = time.monotonic() + config.retry_budget

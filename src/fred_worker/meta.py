@@ -54,6 +54,14 @@ def column(name: str, type_: pa.DataType, comment: str, *, nullable: bool = True
     return pa.field(name, type_, nullable=nullable, metadata={b"comment": comment.encode()})
 
 
+# The catalog comment is the worker's one-line directory description (VGI001):
+# plain text, one paragraph, at most 300 characters. Long-form docs live in
+# vgi.doc_md and agent guidance in vgi.doc_llm.
+CATALOG_COMMENT = (
+    "St. Louis Fed FRED and ALFRED economic time series as SQL tables, including "
+    "current observations, historical vintages and revisions, and series, category, "
+    "release and source discovery. Needs a free FRED API key."
+)
 CATALOG_DOC_LLM = (
     "FRED and ALFRED economic data through authenticated, typed, streaming SQL table functions. "
     "Use observations for current data; alfred_observations(series_id, as_of) for a historical snapshot; "
