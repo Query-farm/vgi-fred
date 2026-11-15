@@ -1,6 +1,6 @@
 [project]
 name = "vgi-fred-worker"
-version = "0.1.1"
+version = "0.1.2"
 description = "Typed FRED and ALFRED economic data, historical vintages, and revision history through VGI SQL."
 readme = "README.md"
 license = "0BSD"

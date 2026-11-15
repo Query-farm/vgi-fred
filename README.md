@@ -44,8 +44,8 @@ For Haybarn 2.0.0rc11 use `INSTALL vgi FROM community; LOAD vgi;`, then the same
 working directory. For a pooled local worker use `LOCATION 'launch:/absolute/path/to/vgi-fred/.venv/bin/vgi-fred-worker'`.
 
 To run a tagged release without cloning, set
-`LOCATION 'uvx --from git+https://github.com/Query-farm/vgi-fred@v0.1.1 vgi-fred-worker'`
-(change `@v0.1.1` to move to a newer release).
+`LOCATION 'uvx --from git+https://github.com/Query-farm/vgi-fred@v0.1.2 vgi-fred-worker'`
+(change `@v0.1.2` to move to a newer release).
 
 Alternatively, after attaching, create a session secret of type `fred_api` with an
 `API_KEY` field. A matching secret takes precedence over the worker environment:
@@ -292,7 +292,7 @@ the fixture and writes `build/duckdb-verification.json`. The same contract also
 runs over authenticated HTTP, with missing/wrong bearer checks and a separate SQL
 secret for FRED; its report is `build/http-auth-verification.json`.
 
-Install a wheel with `uv pip install /path/to/dist/vgi_fred_worker-0.1.1-py3-none-any.whl`.
+Install a wheel with `uv pip install /path/to/dist/vgi_fred_worker-0.1.2-py3-none-any.whl`.
 For release validation, run `test/run_duckdb.py --worker /path/to/isolated-env/bin/vgi-fred-worker`
 using a Python environment containing `duckdb==2.0.0`. The isolated environment
 must contain the built wheel, not an editable checkout. Repeat with `--http-auth`

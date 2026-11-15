@@ -72,12 +72,20 @@ CATALOG_DOC_LLM = (
     "Missing observation markers become NULL; value_text retains the original representation. "
     "Use named date bounds to reduce upstream work and max_rows for an explicit result cap."
 )
+CATALOG_SOURCES_MD = (
+    "\n\n## Sources and references\n\n"
+    "- [FRED (Federal Reserve Economic Data)](https://fred.stlouisfed.org/)\n"
+    "- [ALFRED (archival vintages)](https://alfred.stlouisfed.org/)\n"
+    "- [FRED API documentation](https://fred.stlouisfed.org/docs/api/fred/)\n"
+    "- [Request a free FRED API key](https://fred.stlouisfed.org/docs/api/api_key.html)"
+)
 CATALOG_DOC_MD = (
     "# vgi-fred\n\n"
     + CATALOG_DOC_LLM
     + "\n\nQueries stream one API page at a time. Credentials stay out of continuation state. "
-    "Read README.md for operational limits and examples."
+    "Read README.md for operational limits and examples." + CATALOG_SOURCES_MD
 )
+SCHEMA_COMMENT = "FRED and ALFRED table functions: current observations, vintages, revisions and series discovery."
 SCHEMA_DOC_LLM = CATALOG_DOC_LLM
 SCHEMA_DOC_MD = (
     "## main\n\n"
