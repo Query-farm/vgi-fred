@@ -109,13 +109,13 @@ CATALOG_TAGS = {
     "vgi.executable_examples": json.dumps(
         [
             {
-                "name": "discover_alfred",
-                "description": "Discover the historical snapshot function without credentials or API requests",
-                "sql": (
-                    "SELECT function_name FROM duckdb_functions() WHERE database_name = 'fred' "
-                    "AND function_name = 'alfred_observations' ORDER BY function_name"
+                "name": "sources_columns",
+                "description": (
+                    "Show the columns sources() returns without an API key: binding the "
+                    "function with LIMIT 0 resolves its schema and makes no FRED API request"
                 ),
-                "expected_result": [{"function_name": "alfred_observations"}],
+                "sql": "SELECT * FROM fred.main.sources() LIMIT 0",
+                "expected_result": [],
             }
         ]
     ),

@@ -12,6 +12,8 @@
   caveats) instead of naming each table function (VGI173). The schema docs are
   now distinct from the catalog docs; per-function guidance stays on each
   function's own description.
+- The credential-free executable example now binds `sources()` with `LIMIT 0`
+  instead of querying `duckdb_functions()`, so it uses the worker (VGI517).
 
 ## 0.1.1 (unreleased)
 
