@@ -142,7 +142,7 @@ def retry_delay(header: str | None, attempt: int) -> float:
                 if when.tzinfo is None:
                     when = when.replace(tzinfo=UTC)
                 return max(0.0, (when - datetime.now(UTC)).total_seconds())
-            except (ValueError, TypeError, OverflowError):
+            except ValueError, TypeError, OverflowError:
                 pass
     return float(min(16.0, 0.5 * 2**attempt) + random.uniform(0.0, 0.25))
 
@@ -178,7 +178,7 @@ def get_json(endpoint: str, params: dict[str, str | int], key: str, config: Conf
                 raw = b"".join(chunks)
             try:
                 body = json.loads(raw)
-            except (ValueError, UnicodeError):
+            except ValueError, UnicodeError:
                 raise FredError(f"FRED {endpoint} returned invalid JSON") from None
             if not isinstance(body, dict) or "error_code" in body or "error_message" in body:
                 raise FredError(f"FRED {endpoint} returned an invalid response or API error")
@@ -199,7 +199,7 @@ def get_json(endpoint: str, params: dict[str, str | int], key: str, config: Conf
                 }.get(status, "upstream request failed")
                 raise FredError(f"FRED {endpoint} returned HTTP {status}: {hint}") from None
             delay = retry_delay(header, attempt)
-        except (urllib.error.URLError, TimeoutError, OSError, http.client.HTTPException):
+        except urllib.error.URLError, TimeoutError, OSError, http.client.HTTPException:
             if attempt + 1 == config.attempts:
                 raise FredError(f"FRED {endpoint} network request failed after {config.attempts} attempts") from None
             delay = retry_delay(None, attempt)

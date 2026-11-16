@@ -10,7 +10,7 @@ It streams pages as Arrow batches and supports stdio, Unix sockets, and HTTP.
 
 ## Install and attach
 
-Requires Python 3.13+ and [uv](https://docs.astral.sh/uv/).
+Requires Python 3.14+ and [uv](https://docs.astral.sh/uv/).
 
 ```sh
 cd /path/to/vgi-fred
@@ -298,7 +298,7 @@ using a Python environment containing `duckdb==2.0.0`. The isolated environment
 must contain the built wheel, not an editable checkout. Repeat with `--http-auth`
 to check the installed worker with HTTP bearer authentication and FRED SQL secrets.
 
-CI covers Python 3.13/3.14, the starter's SQL transport matrix, stock DuckDB,
+CI covers Python 3.14, the starter's SQL transport matrix, stock DuckDB,
 metadata (failing even on informational findings) and Docker health. Image publishing requires an explicit manual workflow run. The source is available at [Query-farm/vgi-fred](https://github.com/Query-farm/vgi-fred). Image publishing is manual-only; no hosted service is deployed.
 
 Scope is API v1 series and discovery endpoints listed above. FRED v2 bulk release

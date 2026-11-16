@@ -366,7 +366,7 @@ def _date(value: str, name: str) -> date:
         if result.isoformat() != value or result < date(1776, 7, 4):
             raise ValueError
         return result
-    except (ValueError, TypeError):
+    except ValueError, TypeError:
         raise FredError(f"{name} must be YYYY-MM-DD between 1776-07-04 and 9999-12-31") from None
 
 
@@ -428,7 +428,7 @@ def _convert(value: Any, field: pa.Field[Any]) -> Any:
         if not isinstance(value, str):
             raise ValueError
         return value
-    except (ValueError, TypeError, OverflowError):
+    except ValueError, TypeError, OverflowError:
         raise FredError(f"FRED response has invalid {field.name}") from None
 
 
@@ -602,7 +602,7 @@ class FredFunction[T: PageArgs](TableFunctionGenerator[T, PageState]):
             state.done = True
         try:
             batch = pa.RecordBatch.from_pylist(rows, schema=params.output_schema)
-        except (pa.ArrowException, OverflowError, ValueError):
+        except pa.ArrowException, OverflowError, ValueError:
             raise FredError("FRED response cannot be represented by the declared output schema") from None
         out.emit(batch)
 
