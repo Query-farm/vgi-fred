@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.3 (2026-11-16)
+
+- Require vgi-python `>=0.52.2,<0.53`; uv.lock re-locked.
+- Move to Python 3.14: `requires-python >=3.14`, CI, the Docker image and lint tooling target 3.14.
+- The HTTP User-Agent reports the real version (`vgi-fred/0.1.3`).
+
 ## 0.1.2 (unreleased)
 
 - Docs link to FRED and ALFRED: the catalog documentation now ends with a
