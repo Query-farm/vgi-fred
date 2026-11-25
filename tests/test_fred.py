@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import http.client
 import os
+import socket
 import subprocess
 import sys
 import threading
@@ -366,12 +367,21 @@ def fred_http(fred_api: FredServer, tmp_path: Path) -> Iterator[str]:
         )
         try:
             deadline = time.monotonic() + 20
-            while not port_file.exists():
+            # The port file can appear (or be empty) before the server accepts connections,
+            # so wait for a non-empty port and a successful TCP connect.
+            while True:
                 assert process.poll() is None, "HTTP worker exited before publishing its port"
                 if time.monotonic() >= deadline:
                     pytest.fail("HTTP worker did not start within 20 seconds")
+                port = port_file.read_text().strip() if port_file.exists() else ""
+                if port:
+                    try:
+                        socket.create_connection(("127.0.0.1", int(port)), timeout=1).close()
+                        break
+                    except OSError:
+                        pass
                 time.sleep(0.05)
-            yield "http://127.0.0.1:" + port_file.read_text().strip()
+            yield "http://127.0.0.1:" + port
         finally:
             process.terminate()
             try:

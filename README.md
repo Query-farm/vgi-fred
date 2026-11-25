@@ -8,6 +8,8 @@ The worker uses the official [FRED API v1](https://fred.stlouisfed.org/docs/api/
 which also serves [ALFRED](https://fred.stlouisfed.org/docs/api/fred/alfred.html).
 It streams pages as Arrow batches and supports stdio, Unix sockets, and HTTP.
 
+vgi-fred 0.2.0 speaks VGI protocol 3.4, so it needs Haybarn 2.0.1 or newer (Haybarn 2.0.0 loads a 3.3 `vgi` extension that cannot attach it).
+
 ## Install and attach
 
 Requires Python 3.14+ and [uv](https://docs.astral.sh/uv/).
@@ -39,13 +41,13 @@ FROM fred.main.observations('UNRATE', observation_start := '2020-01-01')
 ORDER BY date;
 ```
 
-For Haybarn 2.0.0rc11 use `INSTALL vgi FROM community; LOAD vgi;`, then the same
+For Haybarn 2.0.1 use `INSTALL vgi FROM community; LOAD vgi;`, then the same
 `ATTACH` and queries. An absolute worker path avoids dependence on the engine's
 working directory. For a pooled local worker use `LOCATION 'launch:/absolute/path/to/vgi-fred/.venv/bin/vgi-fred-worker'`.
 
 To run a tagged release without cloning, set
-`LOCATION 'uvx --from git+https://github.com/Query-farm/vgi-fred@v0.1.3 vgi-fred-worker'`
-(change `@v0.1.3` to move to a newer release).
+`LOCATION 'uvx --from git+https://github.com/Query-farm/vgi-fred@v0.2.0 vgi-fred-worker'`
+(change `@v0.2.0` to move to a newer release).
 
 Alternatively, after attaching, create a session secret of type `fred_api` with an
 `API_KEY` field. A matching secret takes precedence over the worker environment:
